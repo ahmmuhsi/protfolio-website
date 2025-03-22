@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeWriter Test</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Cursor effect */
+        .cursor {
+            color: #007aff;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
+        <p>Testing TypeScript Animation</p>
+    </div>
+    
+    <script>
+        // TypeScript-like typing animation for name
+        class TypeWriter {
+            element;
+            words;
+            wait;
+            isDeleting;
+            txt;
+            wordIndex;
+            typeSpeed;
+
+            constructor(el, words, wait = 3000) {
+                this.element = el;
+                this.words = words;
+                this.txt = '';
+                this.wordIndex = 0;
+                this.wait = parseInt(wait, 10);
+                this.typeSpeed = 100;
+                this.isDeleting = false;
+                this.type();
+            }
+
+            type() {
+                // Current index of word
+                const current = this.wordIndex % this.words.length;
+                // Get full text of current word
+                const fullTxt = this.words[current];
+
+                // Check if deleting
+                if(this.isDeleting) {
+                    // Remove char
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    // Add char
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                // Insert txt into element with TypeScript-like syntax highlighting
+                this.element.innerHTML = this.formatWithTypeScriptSyntax(this.txt);
+
+                // Initial typing speed
+                let typeSpeed = this.typeSpeed;
+
+                if(this.isDeleting) {
+                    typeSpeed /= 2;
+                }
+
+                // If word is complete
+                if(!this.isDeleting && this.txt === fullTxt) {
+                    // Make pause at end
+                    typeSpeed = this.wait;
+                    // Set delete to true
+                    this.isDeleting = true;
+                } else if(this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    // Move to next word
+                    this.wordIndex++;
+                    // Pause before start typing
+                    typeSpeed = 500;
+                }
+
+                setTimeout(() => this.type(), typeSpeed);
+            }
+
+            formatWithTypeScriptSyntax(text) {
+                if (!text) return '';
+                
+                // Check for special TypeScript patterns
+                if (text.includes('<') && text.includes('>')) {
+                    // Generic type syntax like Ahmad<T extends Dev>
+                    const parts = text.split('<');
+                    if (parts.length < 2) return text;
+                    
+                    const name = parts[0];
+                    let generic = parts[1];
+                    
+                    // Replace > with highlighted version
+                    generic = generic.replace('>', '</span>');
+                    
+                    return `<span style="color: #fff;">${name}</span><span style="color: #ff79c6;">&lt;</span><span style="color: #8be9fd;">${generic}`;
+                } else if (text.includes('interface')) {
+                    // Interface syntax
+                    const interfacePattern = /(interface)\s+(\w+)\s+(\{)(.*?)(\})/;
+                    const matches = text.match(interfacePattern);
+                    
+                    if (!matches) return text;
+                    
+                    // Highlight each part
+                    const keyword = matches[1];
+                    const name = matches[2];
+                    const openBrace = matches[3];
+                    const content = matches[4] || '';
+                    const closeBrace = matches[5] || '';
+                    
+                    // Highlight properties inside the interface
+                    const highlightedContent = content.replace(/(\w+)(:)\s+(\w+)(\[\])?/g, 
+                        '<span style="color: #f8f8f2;">$1</span><span style="color: #ff79c6;">$2</span> <span style="color: #8be9fd;">$3$4</span>');
+                    
+                    return `<span style="color: #ff79c6;">${keyword}</span> <span style="color: #50fa7b;">${name}</span> <span style="color: #f8f8f2;">${openBrace}</span>${highlightedContent}<span style="color: #f8f8f2;">${closeBrace}</span>`;
+                } else if (text.includes('function')) {
+                    // Function syntax
+                    const functionPattern = /(function)\s+(\w+)\(\)(:)\s+(\w+)(<.*>)?/;
+                    const matches = text.match(functionPattern);
+                    
+                    if (!matches) return text;
+                    
+                    const keyword = matches[1];
+                    const name = matches[2];
+                    const colon = matches[3];
+                    const returnType = matches[4];
+                    const generic = matches[5] || '';
+                    
+                    let highlightedGeneric = generic;
+                    if (generic) {
+                        highlightedGeneric = generic
+                            .replace('<', '<span style="color: #ff79c6;">&lt;</span><span style="color: #8be9fd;">')
+                            .replace('>', '</span><span style="color: #ff79c6;">&gt;</span>');
+                    }
+                    
+                    return `<span style="color: #ff79c6;">${keyword}</span> <span style="color: #50fa7b;">${name}</span>()<span style="color: #ff79c6;">${colon}</span> <span style="color: #8be9fd;">${returnType}</span>${highlightedGeneric}`;
+                } else if (text.includes(':')) {
+                    // Type annotation like Ahmad: Developer
+                    const parts = text.split(':');
+                    if (parts.length < 2) return text;
+                    
+                    const name = parts[0].trim();
+                    const type = parts[1].trim();
+                    
+                    return `<span style="color: #f8f8f2;">${name}</span><span style="color: #ff79c6;">:</span> <span style="color: #8be9fd;">${type}</span>`;
+                } else {
+                    // Default formatting for simple name
+                    const parts = text.split(' ');
+                    if (parts.length === 1) {
+                        return `<span style="color: #fff;">${parts[0]}</span>`;
+                    } else {
+                        return `<span style="color: #fff;">${parts[0]}</span> <span style="color: #007aff;">${parts[1]}</span>`;
+                    }
+                }
+            }
+        }
+
+        // Initialize on document load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded - initializing typewriter');
+            const typewriter = document.getElementById('typewriter');
+            
+            if (typewriter) {
+                console.log('Typewriter element found');
+                // Create different variations of the name with varying type annotations for a TypeScript feel
+                const nameVariations = [
+                    'Ahmad Muhsi',
+                    'Ahmad: Developer',
+                    'Ahmad<T extends Dev>',
+                    'interface Ahmad { skills: string[] }',
+                    'function Ahmad(): Muhsi<T>',
+                    'Ahmad Muhsi'
+                ];
+                
+                new TypeWriter(typewriter, nameVariations, 2000);
+            } else {
+                console.error('Typewriter element not found!');
+            }
+        });
+    </script>
+</body>
+</html> 

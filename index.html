@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmad Muhsi | MERN Stack Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Immediate script to handle preloader
+        window.addEventListener('load', function() {
+            console.log('Page loaded - attempting to hide preloader');
+            const preloader = document.querySelector('.preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                    console.log('Preloader hidden');
+                }, 300);
+            } else {
+                console.error('Preloader element not found');
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Ahmad<span>Muhsi</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
+                <h2>MERN Stack Developer</h2>
+                <p>Building intuitive and responsive web applications</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn primary-btn">View Projects</a>
+                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://via.placeholder.com/400" alt="Ahmad Muhsi">
+                </div>
+                <div class="about-text">
+                    <h3>Self-taught MERN Stack Developer</h3>
+                    <p>Hello! I'm Ahmad, a passionate web developer focused on creating beautiful, functional, and user-friendly websites. My journey into coding began as a personal interest that quickly evolved into a professional pursuit.</p>
+                    <p>As a self-taught developer, I've dedicated countless hours to mastering the MERN stack (MongoDB, Express.js, React, and Node.js) along with modern front-end technologies. I enjoy solving complex problems and turning ideas into reality through clean, efficient code.</p>
+                    <p>When I'm not coding, I'm constantly learning about new technologies and best practices to enhance my skills and deliver better solutions.</p>
+                    <a href="#" class="btn primary-btn">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section dark-bg">
+        <div class="container">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            <div class="skills-content">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-react"></i>
+                    <h3>React</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-node-js"></i>
+                    <h3>Node.js</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>MongoDB</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-sass"></i>
+                    <h3>Tailwind CSS</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Git</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My <span>Projects</span></h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="E-Commerce Application">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Application</h3>
+                        <p>A full-stack e-commerce platform built with MERN stack featuring user authentication, product catalog, shopping cart, and payment integration.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Express</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn" target="_blank">Live Demo</a>
+                            <a href="#" class="btn small-btn secondary-btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Task Management App">
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>A responsive task management application with drag-and-drop functionality, user authentication, and real-time updates.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Firebase</span>
+                            <span>Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn" target="_blank">Live Demo</a>
+                            <a href="#" class="btn small-btn secondary-btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Weather Dashboard">
+                    </div>
+                    <div class="project-info">
+                        <h3>Weather Dashboard</h3>
+                        <p>An interactive weather application that provides current weather data and forecasts for locations worldwide using a third-party API.</p>
+                        <div class="project-tags">
+                            <span>JavaScript</span>
+                            <span>HTML/CSS</span>
+                            <span>RESTful API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn" target="_blank">Live Demo</a>
+                            <a href="#" class="btn small-btn secondary-btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section dark-bg">
+        <div class="container">
+            <h2 class="section-title">Contact <span>Me</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>ahmad.muhsi@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Remote, Worldwide</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+1 (123) 456-7890</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ahmad Muhsi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Inline script to ensure typewriter starts -->
+    <script>
+        // Backup initialization for the typewriter
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded from inline script');
+            setTimeout(function() {
+                const typewriter = document.getElementById('typewriter');
+                if (typewriter && !typewriter.innerHTML) {
+                    console.log('Typewriter fallback initialization');
+                    // Create different variations of the name with varying type annotations for a TypeScript feel
+                    const nameVariations = [
+                        'Ahmad Muhsi',
+                        'Ahmad: Developer',
+                        'Ahmad<T extends Dev>',
+                        'interface Ahmad { skills: string[] }',
+                        'function Ahmad(): Muhsi<T>',
+                        'Ahmad Muhsi'
+                    ];
+                    
+                    // Simple inline TypeWriter to make sure it works
+                    let wordIndex = 0;
+                    let txt = '';
+                    let isDeleting = false;
+                    
+                    function type() {
+                        const current = wordIndex % nameVariations.length;
+                        const fullTxt = nameVariations[current];
+                        
+                        if(isDeleting) {
+                            txt = fullTxt.substring(0, txt.length - 1);
+                        } else {
+                            txt = fullTxt.substring(0, txt.length + 1);
+                        }
+                        
+                        typewriter.textContent = txt;
+                        
+                        let typeSpeed = 100;
+                        
+                        if(isDeleting) {
+                            typeSpeed /= 2;
+                        }
+                        
+                        if(!isDeleting && txt === fullTxt) {
+                            typeSpeed = 2000;
+                            isDeleting = true;
+                        } else if(isDeleting && txt === '') {
+                            isDeleting = false;
+                            wordIndex++;
+                            typeSpeed = 500;
+                        }
+                        
+                        setTimeout(type, typeSpeed);
+                    }
+                    
+                    type();
+                }
+            }, 1000); // Wait 1 second after DOM loaded before checking
+        });
+    </script>
+</body>
+</html> 
